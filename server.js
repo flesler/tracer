@@ -1,6 +1,7 @@
 var http = require('http')
 	fs = require('fs'),
 	parseURL = require('url').parse,
+	resolveURL = require('url').resolve,
 	parseQS = require('querystring').parse;
 
 //- General server and form
@@ -87,6 +88,9 @@ function write(res, index, data) {
 	}
 	res.write(tpl);
 	res.write('\n');
+	if (index === OUTRO) {
+		res.end();
+	}
 }
 
 //- Form data
@@ -146,10 +150,15 @@ function request(res, url, data) {
 
 	var start = Date.now();
 	var prot = opts.protocol.slice(0, -1);
+	// We don't support this protocol
+	if (prot.indexOf('http') === -1) {
+		return write(res, OUTRO);
+	}
+
 	var req = require(prot).request(opts, function(reply) {
 		var elapsed = Date.now() - start;
 		var status = reply.statusCode;
-		var location = getLocation(reply, opts);
+		var location = getLocation(reply, url);
 		var atLimit = ++data.hops === MAX_HOPS;
 		write(res, STATUS, {
 			status: status, 
@@ -167,7 +176,6 @@ function request(res, url, data) {
 			request(res, location, data);
 		} else {
 			write(res, OUTRO);
-			res.end();
 		}
 	});
 	
@@ -180,17 +188,9 @@ function request(res, url, data) {
 	req.end();
 }
 
-function getLocation(res, opts) {
+function getLocation(res, url) {
 	var loc = res.headers.location;
 	if (!loc) return null;
-	if (loc.indexOf('//') === -1) {
-		loc = opts.host + loc;
-	}
-	if (loc.indexOf('://') === -1) {
-		// TODO: Support https
-		loc = opts.protocol + '//' + loc;
-	}
-	return loc;
-
+	return resolveURL(url, loc);
 }
 
