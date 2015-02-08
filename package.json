@@ -1,0 +1,19 @@
+{
+  "name": "tracer",
+  "author": "Ariel Flesler <aflesler@gmail.com>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trace URL redirects",
+  "scripts": {
+    "start": "node server"
+  },
+  "main": "./server.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "^2.0.0"
+  }
+}

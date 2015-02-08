@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tracer</title>
+		<style type="text/css">
+			body {
+				width: 382px;
+				/*margin: 0 auto;*/
+			}
+			form {
+				border: 1px solid #999;
+				overflow: hidden;
+				text-align: center;
+				padding: 25px 15px;
+			}
+			form * {
+				float: left;
+			}
+			label {
+				margin-bottom: 15px;
+				clear: left;
+				width: 58px;
+				text-align: right;
+				margin-right: 5px;
+			}
+			input {
+				width: 270px;
+				padding: 3px 2px;
+				margin-top: -4px;
+			}
+			button {
+				float: right;
+				clear: both;
+			}
+		</style>	
+	</head>
+	<body>    
+	   <h1>Tracer</h1>
+	   <form action="/trace" method="post">
+	   	<label for="url">URL:</label>
+   		<input name="url" placeholder="http://somesite.com/someurl" />
+
+			<label for="method">Method:</label>
+   		<select name="method">
+   			<option>GET</option>
+   			<option>POST</option>
+   			<option>PUT</option>
+   			<option>HEAD</option>
+   			<option>DELETE</option>
+   		</select>
+
+
+	   	<label for="device">Device:</label>
+   		<select name="device">
+   			<option value="iphone">iPhone</option>
+   			<option value="android">Android</option>
+   		</select>
+
+	   	<label for="country">Country:</label>
+   		<select name="country">
+   			<option value="ar">Argentina</option>
+   			<option value="br">Brasil</option>
+   			<option value="cl">Chile</option>
+   		</select>
+
+	   	<button>Trace</button>
+	   </form>
+	</body>
+</html>

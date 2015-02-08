@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tracer</title>
+		<style type="text/css">
+			body {}
+			li {
+				margin-bottom: 10px;
+				line-height: 20px;
+			}
+			li * {
+				display: inline-block;
+			}
+			a, .method {
+				background: #EEE;
+				border: 1px solid #BBB;
+				padding: 2px 4px;
+				text-decoration: none;
+				color: #555;
+				/*width: 300px;*/
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				vertical-align: bottom;
+				line-height: 14px;
+			}
+			.method.GET {
+				display: none;
+			}
+			.elapsed {
+				color: #666;
+				text-align: right;
+				margin: 0 5px;
+				font-style: italic;
+			}
+			.status {
+				font-style: italic;
+			}
+			.type-2 { color: #4EDA4E; }
+			.type-3 { color: #688CCD; }
+			.type-4 { color: #FC5A2A; }
+			.type-5 { color: #D20000; }
+			.limit  { color: #D20000; }
+		</style>	
+	</head>
+	<body>    
+	   <h1>Tracer</h1>
+	   <ol>
+
+	   		<li>
+	   			<span class="method {method}">{method}</span>
+	   			<a class="url" href="{url}" title="{url}" target="_blank">{url}</a>
+
+	   			<span class="elapsed">{elapsed}ms</span>
+	   			<span class="status type-{type} {limit}">{status} {msg}</span>
+	   		</li>
+
+	   </ol>
+	</body>
+</html>
