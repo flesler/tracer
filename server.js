@@ -1,4 +1,4 @@
-var http = require('http')
+var http = require('http'),
 	fs = require('fs'),
 	parseURL = require('url').parse,
 	resolveURL = require('url').resolve,
@@ -66,7 +66,7 @@ function wrap(res, fn) {
 //- Templating
 
 const INTRO   = 0;
-const URL     = 1;
+const URI     = 1;
 const STATUS  = 2;
 const OUTRO   = 3;
 
@@ -134,7 +134,7 @@ const MAX_HOPS = 20;
 
 function request(res, url, data) {
 	data.url = url;
-	write(res, URL, data);
+	write(res, URI, data);
 
 	var opts = parseURL(url);
 	copy(opts, {
