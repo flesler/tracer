@@ -96,9 +96,12 @@ function write(res, index, data) {
 //- Form data
 
 const COUNTRIES = {
-	ar: {ip:'1.1.1.1', lang:'es-ar'},
-	br: {ip:'2.2.2.2', lang:'pt-br'},
-	cl: {ip:'201.220.244.147', lang:'es-cl'}
+	ar: {ip:'190.12.224.25', lang:'es'},
+	br: {ip:'177.12.192.12', lang:'pt'},
+	cl: {ip:'201.220.244.147', lang:'es'},
+	es: {ip:'46.253.32.76', lang:'es'},
+	it: {ip:'62.123.0.62', lang:'it'},
+	mx: {ip:'201.130.32.23', lang:'es'}
 };
 
 const DEVICES = {
@@ -123,6 +126,7 @@ function runTrace(res, data) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	write(res, INTRO);
 	copy(data, COUNTRIES[data.country]);
+	data.lang += '-'+data.country;
 	data.ua = replace(DEVICES[data.device], data);
 	data.lang += ',en-us';
 	data.hops = 0;
